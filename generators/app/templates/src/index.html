@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" itemscope itemtype="https://schema.org/WebSite">
+<head>
+
+  <!-- Basics -->
+  <base href="/">
+  <meta charset="UTF-8"/>
+  <title><%= name %></title>
+  <meta name="description" content="<%= description %>"/>
+
+  <!-- Web-app capable and viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=yes">
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <!-- Icons and splash pages -->
+  <!-- Generate Favicons at http://realfavicongenerator.net/ -->
+  <link rel="apple-touch-icon" sizes="180x180" href="img/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="img/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="img/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="img/favicons/manifest.json">
+  <link rel="mask-icon" href="img/favicons/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Schema.org markup for Google+ -->
+  <meta itemprop="name" content="<%= name %>">
+  <meta itemprop="description" content="<%= description %>">
+
+  <!-- Twitter Card data -->
+  <meta name="twitter:title" content="<%= name %>">
+  <meta name="twitter:description" content="<%= description %>">
+
+  <!-- Open Graph data -->
+  <meta property="og:title" content="<%= name %>" />
+  <meta property="og:description" content="<%= description %>" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/app.min.css" />
+
+</head>
+<body ng-app="<%= lowPrefix %>" ng-strict-di>
+
+  <!-- Global container -->
+  <<%= lowPrefix %>></<%= lowPrefix %>>
+
+  <!-- Scripts -->
+  <script src="js/bundle.js"></script>
+</body>
+</html>

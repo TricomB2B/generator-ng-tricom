@@ -1,0 +1,11 @@
+html,
+body {
+  @include size(100%);
+}
+
+<%= lowPrefix %> {
+  display: block;
+  @include size(100%);
+  position: relative;
+  overflow: hidden;
+}
