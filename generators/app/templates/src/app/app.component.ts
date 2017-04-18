@@ -1,3 +1,5 @@
+const <%= upPrefix %>Template = require('./<%= lowPrefix %>.html');
+
 export const <%= upPrefix %>Component: angular.IComponentOptions = {
-  templateUrl: '<%= lowPrefix %>.html'
+  template: <%= upPrefix %>Template
 };

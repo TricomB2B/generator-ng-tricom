@@ -6,7 +6,6 @@ import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 
 import { HomeComponent } from './home.component';
-//import { LcmDataService } from '../../services/lcm-data/lcm-data.service';
 
 export const HomeModule = angular
   .module('home', [

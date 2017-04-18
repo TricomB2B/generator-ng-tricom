@@ -66,10 +66,10 @@ module.exports = class extends Generator {
     this.fs.copy(this.templatePath('babelrc.txt'), this.destinationPath('.babelrc'));
     this.fs.copy(this.templatePath('editorconfig.txt'), this.destinationPath('.editorconfig'));
     this.fs.copy(this.templatePath('gitignore.txt'), this.destinationPath('.gitignore'));
+    this.fs.copy(this.templatePath('postcss.config.js'), this.destinationPath('postcss.config.js'));
     this.fs.copy(this.templatePath('README.md'), this.destinationPath('README.md'));
     this.fs.copy(this.templatePath('tsconfig.json'), this.destinationPath('tsconfig.json'));
     this.fs.copy(this.templatePath('tslint.json'), this.destinationPath('tslint.json'));
-    this.fs.copy(this.templatePath('webpack.config.js'), this.destinationPath('webpack.config.js'));
 
     this.fs.copy(this.templatePath('src/htaccess.txt'), this.destinationPath('src/.htaccess'));
     this.fs.copy(this.templatePath('src/data.json'), this.destinationPath('src/data.json'));
@@ -85,9 +85,16 @@ module.exports = class extends Generator {
     this.fs.copy(this.templatePath('src/app/services/data/data.module.ts'), this.destinationPath('src/app/services/data/data.module.ts'));
     this.fs.copy(this.templatePath('src/app/services/data/data.service.ts'), this.destinationPath('src/app/services/data/data.service.ts'));
 
+    this.fs.copy(this.templatePath('src/app/vendor.ts'), this.destinationPath('src/app/vendor.ts'));
+
     this.fs.copyTpl(
       this.templatePath('gulpfile.babel.js'),
       this.destinationPath('gulpfile.babel.js'),
+      props
+    );
+    this.fs.copyTpl(
+      this.templatePath('webpack.config.js'),
+      this.destinationPath('webpack.config.js'),
       props
     );
     this.fs.copyTpl(
@@ -154,6 +161,6 @@ module.exports = class extends Generator {
   // End Queue
   end () {
     this.log(chalk.green('Your AngularJS+TypeScript app is ready. Build something awesome!'));
-    this.spawnCommandSync('gulp');
+    this.spawnCommandSync('npm', ['run', 'serve']);
   }
 }

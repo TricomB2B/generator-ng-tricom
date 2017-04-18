@@ -17,18 +17,17 @@ import { ComponentsModule } from './components/components.module';
 import { CommonModule } from './common/common.module';
 // services module container
 import { ServicesModule } from './services/services.module';
-// generated template module utilizing $templateCache service
-import { TemplateModule } from './templates.generated';
 // data service definitions
 import { DataService } from './services/data/data.service';
+// core stylesheet
+import '../scss/app.scss';
 
 const root = angular
   .module('<%= lowPrefix %>', [
     uiRouter,
     CommonModule,
     ComponentsModule,
-    ServicesModule,
-    TemplateModule
+    ServicesModule
   ])
   .component('<%= lowPrefix %>', <%= upPrefix %>Component)
   .run(bootstrap)

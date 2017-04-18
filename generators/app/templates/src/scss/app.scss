@@ -7,11 +7,19 @@
 */
 
 // bourbonize it
-@import "../../node_modules/bourbon/app/assets/stylesheets/bourbon";
+@import "../../node_modules/bourbon/core/bourbon";
 @import "../../node_modules/bourbon-neat/core/neat";
 
-// normalize it
-@import "sanitize";
+// utils
+// probably should not have any actual css output
 @import "settings";
-@import "util/util";
-@import "styling/styling";
+@import "util/functions";
+@import "util/mixins";
+
+// reset/normalize/sanitize
+@import "sanitize";
+
+// styles
+@import "styling/animations";
+@import "styling/global";
+@import "styling/typography";
