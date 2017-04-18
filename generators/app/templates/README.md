@@ -1,55 +1,44 @@
-# intelligrated-lcm
+# Repo Name
 
-> Kiosk-style tool for Intelligrated's Lifecycle Management service.
+> Short description
 
 #### Job
 
-- 9697: Design / Development
+- Job Number and Description
 
 #### Stakeholders
 
 - TriComB2B: Design / Development
-- Intelligrated: Owner / Content Generation
+- Client: Owner / Content Generation
 
 #### Platforms
 
-- win32 : v0.0.1 : March 31, 2017
+- Define platform-specific builds.
+- Optional (ie. there may not be any platform-specific builds).
 
 ## Getting Started
 
-To get started locally, clone this repository, install the dependencies, and build the assets:
+To get started locally, clone this repository, install the dependencies, and compile the source:
 
 ```sh
-$ git clone git@github.com:TricomB2B/intelligrated-lcm.git
-$ cd intelligrated-lcm
+$ git clone git@github.com:TricomB2B/repo.git
+$ cd repo
 $ yarn
-$ gulp build
+$ npm run build
 ```
 
-The app can now be run from any web browser.
+The app can now be run from any web browser by pointing at the `./dist/` directory.
 
 ### Development
 
-Following the process above, either update the gulpfile with your local proxy URL:
-
-```js
-/* -- gulpfile.babel.js -- */
-
-// Proxy URL (optional)
-const proxyUrl = 'intelligrated-lcm.dev';
-```
-
-or just utilize the local browser sync server task:
+Following the process above, run the webpack dev server!
 
 ```sh
-# proxy
-$ gulp proxy
-
-# local
-$ gulp
+$ npm run serve
+App now at http://localhost:3000
 ```
 
-You'll see the assets build for development, and gulp will being watching files for changes.
+You'll see the assets build for development, and and webpack will begin watching files for changes.
 
 ## Prerequisites
 
@@ -58,6 +47,7 @@ No additional prereqs are required to deploy to a live server or run the package
 ### Development
 
 - [NodeJS](https://nodejs.org/en/)
+- [Webpack](https://webpack.js.org/)
 - [Gulp](http://gulpjs.com/)
 - [Yarn](https://yarnpkg.com/en/)
 - [Electron](https://electron.atom.io/)
@@ -81,83 +71,11 @@ All data is managed through the `data.json` object.
 
 ```js
 {
-  "bigPath": "img/big/",
-  "medPath": "img/medium/",
-  "smallPath": "img/small/",
-  "bigTail": "-bkg.jpg",
-  "medTail": "-220x220.jpg",
-  "smallTail": "-192x192.jpg",
-  "home": [],
-  "cats": {},
-  "topics": {}
+
 }
 ```
 
-#### Paths / Tails
-
-This is the path to the various sized images, along with the filename suffix. All image filenames should match its associated topic ID.
-
-#### Home Array
-
-```js
-"home": [
-  "peak",
-  "manage",
-  "maintain",
-  "247"
- ]
-```
-
-Simply an array of category ID references to the category objects.
-
-#### Cats
-
-```js
-"cats": {
-  "peak": {
-    "title": "LCM Peak",
-    "size": "medium",
-    "introCopy": "Lorem Ipsum",
-    "topics": [
-      "assessment",
-      "system-stress-test",
-      "project-management",
-      "performance-guarantee",
-      "reporting",
-      "escalation",
-      "supplemental-support-resources",
-      "parts-inv-management",
-      "parts-peak-insurance-kit",
-      "tech-support-base",
-      "onsite-operator-training",
-      "contract-terms"
-    ]
-  }
-}
-```
-
-Category definitions.
-
-- `title` Displayed title of the category.
-- `size` Sizing of the boxes in the selector. Valid options are `medium` and `small`.
-- `introCopy` Copy to display at the top of the selector view.
-- `topics` Array of topic ID references to the topic objects.
-
-#### Topics
-
-```js
-"topics": {
-  "assessment": {
-    "title": "Assessment",
-    "copy": "<p>Blah Blah HTML allowed here.</p>"
-  }
-}
-```
-
-Topic definitions.
-
-- `title` Displayed title of the topic.
-- `copy` Copy to display in the detail view. HTML is allowed here, however it will be sanitized to only allow safe tags. At minimum, you will need a `<p> ... </p>` tag for the copy to display correctly.
+#### Define All Data Structures
 
 ## Built With
 
@@ -175,10 +93,8 @@ We use SemVer for versioning.
 
 ## Authors
 
-- Dan Williams - Designer
-- Todd Miller - Developer
-- Lorie Woods - Account Executive
+- Person - Role
 
 ## License
 
-Copyright (c) 2017 TriComB2B & Intelligrated
+Copyright (c) 2017 TriComB2B & ClientName
