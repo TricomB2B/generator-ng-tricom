@@ -98,8 +98,8 @@ module.exports = class extends Generator {
       props
     );
     this.fs.copyTpl(
-      this.templatePath('src/index.html'),
-      this.destinationPath('src/index.html'),
+      this.templatePath('src/index.ejs'),
+      this.destinationPath('src/index.ejs'),
       props
     );
     this.fs.copyTpl(

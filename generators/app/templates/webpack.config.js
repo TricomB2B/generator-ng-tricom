@@ -6,6 +6,7 @@ const path    = require('path');
 // webpack plugins
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 // globals
 const PROD = process.env.NODE_ENV === 'production';
 
@@ -73,8 +74,7 @@ module.exports = () => {
                     path.resolve(__dirname, 'node_modules/bourbon-neat/core/neat/functions/*.scss'),
                     path.resolve(__dirname, 'node_modules/bourbon-neat/core/neat/mixins/*.scss'),
                     path.resolve(__dirname, 'src/scss/_settings.scss'),
-                    path.resolve(__dirname, 'src/scss/util/*.scss'),
-                    path.resolve(__dirname, 'src/scss/styling/*.scss')
+                    path.resolve(__dirname, 'src/scss/util/*.scss')
                   ]
                 }
               }
@@ -86,7 +86,7 @@ module.exports = () => {
           use: 'html-loader'
         },
         {
-          test: /\.(jpe?g|png)$/,
+          test: /\.(jpe?g|png|svg)$/,
           use: 'file-loader?name=/[path][name].[ext]'
         }
       ]
@@ -95,6 +95,9 @@ module.exports = () => {
       new ExtractTextPlugin('css/app.css'),
       new webpack.optimize.CommonsChunkPlugin({
         names: ['app', 'vendor']
+      }),
+      new HtmlWebpackPlugin({
+        template: './index.ejs'
       })
     ],
     devtool: 'source-map',
@@ -135,7 +138,6 @@ module.exports = () => {
         sourceMap: true
       }),
       new CopyWebpackPlugin([
-        { from: 'index.html' },
         { from: '.htaccess' },
         { from: 'data.json' },
         { from: 'img/favicons', to: 'img/favicons' }
