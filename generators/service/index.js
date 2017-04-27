@@ -18,10 +18,15 @@ module.exports = class extends Generator {
       message: 'What is the name of this service?',
       validate: Boolean
     }, {
+      type: 'confirm',
+      name: 'isCore',
+      message: 'Is this a core service?',
+      default: true
+    }, {
       type: 'input',
       name: 'description',
       message: 'Describe this service.',
-      default: 'It does stuff.'
+      default: 'It does stuff with other stuff.'
     }];
 
     return this.prompt(prompts)
@@ -37,40 +42,36 @@ module.exports = class extends Generator {
   // Writing Queue
   writing () {
     const props      = this.props,
-          servModule = 'src/app/services/services.module.ts';
+          coreModule = 'src/app/core/core.module.ts';
 
-    // process the templates
-    this.fs.copyTpl(
-      this.templatePath('service.module.ts'),
-      this.destinationPath(`src/app/services/${props.lowName}/${props.lowName}.module.ts`),
-      props
-    );
-    this.fs.copyTpl(
-      this.templatePath('service.service.ts'),
-      this.destinationPath(`src/app/services/${props.lowName}/${props.lowName}.service.ts`),
-      props
-    );
+    if (props.isCore) {
+      this.fs.copyTpl(
+        this.templatePath('service.service.ts'),
+        this.destinationPath(`src/app/core/${props.lowName}.service.ts`),
+        props
+      );
 
-    // add the new module to the components container module
-    return fsp
-      .readFile(this.destinationPath(servModule), 'utf8')
-      .then((data) => {
-        const re1 = new RegExp('(\/\/ service module imports\n)'),
-              re2 = new RegExp(`(.module\\('${props.lowPrefix}.services', \\[\n)`);
+      // add the new service to the core container module
+      return fsp
+        .readFile(this.destinationPath(coreModule), 'utf8')
+        .then((data) => {
+          const re1 = new RegExp('(\/\/ service imports\n)'),
+                re2 = new RegExp(`(module\\('core', \\[\\]\\)\n)`);
 
-        let newFile = data
-          .replace(
-            re1,
-            `$&import { ${props.upName}Module } from './${props.lowName}/${props.lowName}.module';\n`)
-          .replace(
-            re2,
-            `$&    ${props.upName}Module,\n`);
+          let newFile = data
+            .replace(
+              re1,
+              `$&import { ${props.upName}Service } from './${props.lowName}.service';\n`)
+            .replace(
+              re2,
+              `$&  .service('${props.upName}Service', ${props.upName}Service)\n`);
 
-        return fsp.writeFile(this.destinationPath(servModule), newFile);
-      })
-      .then(() => {
-        this.log(`   ${chalk.green('updated')} ${servModule}`);
-      });
+          return fsp.writeFile(this.destinationPath(coreModule), newFile);
+        })
+        .then(() => {
+          this.log(`   ${chalk.green('updated')} ${coreModule}`);
+        });
+    }
   }
 
   // End Queue
