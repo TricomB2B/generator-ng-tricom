@@ -58,10 +58,9 @@ module.exports = class extends Generator {
     mkdirp.sync(this.destinationPath('src/app'));
     mkdirp.sync(this.destinationPath('src/img'));
     mkdirp.sync(this.destinationPath('src/scss'));
-    mkdirp.sync(this.destinationPath('src/app/common'));
-    mkdirp.sync(this.destinationPath('src/app/components'));
-    mkdirp.sync(this.destinationPath('src/app/services'));
-    mkdirp.sync(this.destinationPath('src/app/components/home'));
+    mkdirp.sync(this.destinationPath('src/app/core'));
+    mkdirp.sync(this.destinationPath('src/app/shared'));
+    mkdirp.sync(this.destinationPath('src/app/home'));
 
     this.fs.copy(this.templatePath('babelrc.txt'), this.destinationPath('.babelrc'));
     this.fs.copy(this.templatePath('editorconfig.txt'), this.destinationPath('.editorconfig'));
@@ -76,16 +75,18 @@ module.exports = class extends Generator {
 
     this.fs.copy(this.templatePath('src/img/**/*'), this.destinationPath('src/img'));
 
-    this.fs.copy(this.templatePath('src/app/components/home/home.component.ts'), this.destinationPath('src/app/components/home/home.component.ts'));
-    this.fs.copy(this.templatePath('src/app/components/home/home.controller.ts'), this.destinationPath('src/app/components/home/home.controller.ts'));
-    this.fs.copy(this.templatePath('src/app/components/home/home.html'), this.destinationPath('src/app/components/home/home.html'));
-    this.fs.copy(this.templatePath('src/app/components/home/home.module.ts'), this.destinationPath('src/app/components/home/home.module.ts'));
-    this.fs.copy(this.templatePath('src/app/components/home/home.scss'), this.destinationPath('src/app/components/home/home.scss'));
-
-    this.fs.copy(this.templatePath('src/app/services/data/data.module.ts'), this.destinationPath('src/app/services/data/data.module.ts'));
-    this.fs.copy(this.templatePath('src/app/services/data/data.service.ts'), this.destinationPath('src/app/services/data/data.service.ts'));
+    this.fs.copy(this.templatePath('src/app/home/home.component.ts'), this.destinationPath('src/app/home/home.component.ts'));
+    this.fs.copy(this.templatePath('src/app/home/home.controller.ts'), this.destinationPath('src/app/home/home.controller.ts'));
+    this.fs.copy(this.templatePath('src/app/home/home.html'), this.destinationPath('src/app/home/home.html'));
+    this.fs.copy(this.templatePath('src/app/home/home.module.ts'), this.destinationPath('src/app/home/home.module.ts'));
+    this.fs.copy(this.templatePath('src/app/home/home.scss'), this.destinationPath('src/app/home/home.scss'));
 
     this.fs.copy(this.templatePath('src/app/vendor.ts'), this.destinationPath('src/app/vendor.ts'));
+
+    this.fs.copy(this.templatePath('src/app/core/core.module.ts'), this.destinationPath('src/app/core/core.module.ts'));
+    this.fs.copy(this.templatePath('src/app/core/data.service.ts'), this.destinationPath('src/app/core/data.service.ts'));
+
+    this.fs.copy(this.templatePath('src/app/shared/shared.module.ts'), this.destinationPath('src/app/shared/shared.module.ts'));
 
     this.fs.copyTpl(
       this.templatePath('gulpfile.babel.js'),
@@ -115,21 +116,6 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath('src/app/app.html'),
       this.destinationPath(`src/app/${this.props.lowPrefix}.html`),
-      props
-    );
-    this.fs.copyTpl(
-      this.templatePath('src/app/common/common.module.ts'),
-      this.destinationPath(`src/app/common/common.module.ts`),
-      props
-    );
-    this.fs.copyTpl(
-      this.templatePath('src/app/components/components.module.ts'),
-      this.destinationPath(`src/app/components/components.module.ts`),
-      props
-    );
-    this.fs.copyTpl(
-      this.templatePath('src/app/services/services.module.ts'),
-      this.destinationPath(`src/app/services/services.module.ts`),
       props
     );
     this.fs.copyTpl(

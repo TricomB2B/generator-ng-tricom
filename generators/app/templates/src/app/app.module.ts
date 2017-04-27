@@ -9,25 +9,26 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 
-// core component
+// app component
 import { <%= upPrefix %>Component } from './<%= lowPrefix %>.component';
-// components module container
-import { ComponentsModule } from './components/components.module';
-// common module container
-import { CommonModule } from './common/common.module';
-// services module container
-import { ServicesModule } from './services/services.module';
+// core module container
+import { CoreModule } from './core/core.module';
+// shared module container
+import { SharedModule } from './shared/shared.module';
 // data service definitions
-import { DataService } from './services/data/data.service';
+import { DataService } from './core/data.service';
 // core stylesheet
 import '../scss/app.scss';
+
+// component / feature modules
+import { HomeModule } from './home/home.module';
 
 const root = angular
   .module('<%= lowPrefix %>', [
     uiRouter,
-    CommonModule,
-    ComponentsModule,
-    ServicesModule
+    CoreModule,
+    SharedModule,
+    HomeModule
   ])
   .component('<%= lowPrefix %>', <%= upPrefix %>Component)
   .run(bootstrap)

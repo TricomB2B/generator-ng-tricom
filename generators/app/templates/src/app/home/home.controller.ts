@@ -1,4 +1,4 @@
-import { DataService } from '../../services/data/data.service';
+import { DataService } from '../core/data.service';
 
 export class HomeController {
   static $inject: string[] = ['DataService'];
