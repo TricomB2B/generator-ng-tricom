@@ -1,8 +1,8 @@
 {
   "name": "generator-ng-tricom",
   "version": "0.0.1",
-  "description": "Yeoman generator for AngularJS 1.6.x web apps.",
-  "main": "index.js",
+  "description": "TriComB2B's opinionated yeoman generator for TypeScript/AngularJS based hybrid applications.",
+  "main": "generators/app/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
