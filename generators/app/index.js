@@ -147,6 +147,7 @@ module.exports = class extends Generator {
   // End Queue
   end () {
     this.log(chalk.green('Your AngularJS+TypeScript app is ready. Build something awesome!'));
+    this.spawnCommandSync('subl', ['.']);
     this.spawnCommandSync('npm', ['run', 'serve']);
   }
 }
