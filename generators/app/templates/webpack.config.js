@@ -26,7 +26,7 @@ module.exports = () => {
     },
     output: {
       path: path.join(__dirname, 'dist'),
-      filename: 'js/[name].js'
+      filename: 'js/[name].[hash].js'
     },
     module: {
       rules: [
@@ -70,9 +70,6 @@ module.exports = () => {
                     path.resolve(__dirname, 'node_modules/bourbon/core/bourbon/validators/*.scss'),
                     path.resolve(__dirname, 'node_modules/bourbon/core/bourbon/utilities/*.scss'),
                     path.resolve(__dirname, 'node_modules/bourbon/core/bourbon/library/*.scss'),
-                    path.resolve(__dirname, 'node_modules/bourbon-neat/core/neat/settings/*.scss'),
-                    path.resolve(__dirname, 'node_modules/bourbon-neat/core/neat/functions/*.scss'),
-                    path.resolve(__dirname, 'node_modules/bourbon-neat/core/neat/mixins/*.scss'),
                     path.resolve(__dirname, 'src/scss/_settings.scss'),
                     path.resolve(__dirname, 'src/scss/util/*.scss')
                   ]
@@ -92,7 +89,9 @@ module.exports = () => {
       ]
     },
     plugins: [
-      new ExtractTextPlugin('css/app.css'),
+      new ExtractTextPlugin({
+        filename: 'css/app.[contenthash].css'
+      }),
       new webpack.optimize.CommonsChunkPlugin({
         names: ['app', 'vendor']
       }),
@@ -140,6 +139,7 @@ module.exports = () => {
       new CopyWebpackPlugin([
         { from: '.htaccess' },
         { from: 'data.json' },
+        { from: 'svg4everybody.min.js' },
         { from: 'img/favicons', to: 'img/favicons' }
       ])
     );

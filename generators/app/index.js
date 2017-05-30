@@ -72,6 +72,7 @@ module.exports = class extends Generator {
 
     this.fs.copy(this.templatePath('src/htaccess.txt'), this.destinationPath('src/.htaccess'));
     this.fs.copy(this.templatePath('src/data.json'), this.destinationPath('src/data.json'));
+    this.fs.copy(this.templatePath('src/svg4everybody.min.js'), this.destinationPath('src/svg4everybody.min.js'));
 
     this.fs.copy(this.templatePath('src/img/**/*'), this.destinationPath('src/img'));
 
