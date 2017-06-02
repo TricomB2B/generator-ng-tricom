@@ -72,6 +72,7 @@ function config ($stateProvider: angular.ui.IStateProvider,
   $stateProvider
     .state('root', {
       abstract: true,
+      component: '<%= lowPrefix %>',
       url: '',
       resolve: {
         loadData: ['DataService', (ds: DataService) => {

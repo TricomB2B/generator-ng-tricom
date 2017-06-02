@@ -24,7 +24,7 @@ function config ($stateProvider: angular.ui.IStateProvider) {
     .state('root.home', {
       url: '/',
       views: {
-        'main@^.^': 'home'
+        'main@^': 'home'
       }
     });
 }
