@@ -3,28 +3,26 @@
  */
 
 import angular from 'angular';
-import uiRouter from 'angular-ui-router';
+import { StateProvider } from '@uirouter/angularjs';
 
 import { HomeComponent } from './home.component';
 
 export const HomeModule = angular
-  .module('home', [
-    uiRouter
-  ])
+  .module('home', [])
   .component('home', HomeComponent)
   .config(config)
   .name;
 
 /**
  * Route configuration
- * @param {angular.ui.IStateProvider} $stateProvider Injected service reference
+ * @param {StateProvider} $stateProvider Injected service reference
  */
-function config ($stateProvider: angular.ui.IStateProvider) {
+function config ($stateProvider: StateProvider) {
   $stateProvider
     .state('root.home', {
       url: '/',
       views: {
-        'main@^.^': 'home'
+        'main': 'home'
       }
     });
 }

@@ -7,7 +7,7 @@
  */
 
 import angular from 'angular';
-import uiRouter from 'angular-ui-router';
+import uiRouter, { StateProvider, UrlRouterProvider, UrlMatcherFactory } from '@uirouter/angularjs';
 
 // app component
 import { <%= upPrefix %>Component } from './<%= lowPrefix %>.component';
@@ -53,15 +53,15 @@ function bootstrap () {
 
 /**
  * Root abstract route configuration
- * @param {angular.ui.IStateProvider}             $stateProvider     Injected service reference
+ * @param {StateProvider}             $stateProvider     Injected service reference
  * @param {angular.ILocationProvider}             $locationProvider  Injected service reference
- * @param {angular.ui.IUrlRouterProvider}         $urlRouterProvider Injected service reference
- * @param {angular.ui.IUrlMatcherFactoryProvider} $urlMatcherFactoryProvider Injected service reference
+ * @param {UrlRouterProvider}         $urlRouterProvider Injected service reference
+ * @param {UrlMatcherFactoryProvider} $urlMatcherFactoryProvider Injected service reference
  */
-function config ($stateProvider: angular.ui.IStateProvider,
+function config ($stateProvider: StateProvider,
                  $locationProvider: angular.ILocationProvider,
-                 $urlRouterProvider: angular.ui.IUrlRouterProvider,
-                 $urlMatcherFactoryProvider: angular.ui.IUrlMatcherFactory) {
+                 $urlRouterProvider: UrlRouterProvider,
+                 $urlMatcherFactoryProvider: UrlMatcherFactory) {
   // uses prettier url structure (ie. no hashbang junk)
   $locationProvider.html5Mode(true);
   // allows trailing slashes in urls
@@ -72,6 +72,7 @@ function config ($stateProvider: angular.ui.IStateProvider,
   $stateProvider
     .state('root', {
       abstract: true,
+      component: '<%= lowPrefix %>',
       url: '',
       resolve: {
         loadData: ['DataService', (ds: DataService) => {
