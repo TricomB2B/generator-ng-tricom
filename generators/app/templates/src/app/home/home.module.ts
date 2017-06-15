@@ -20,7 +20,7 @@ export const HomeModule = angular
 function config ($stateProvider: StateProvider) {
   $stateProvider
     .state('root.home', {
-      url: '/',
+      url: '',
       views: {
         'main': 'home'
       }

@@ -7,7 +7,8 @@
  */
 
 import angular from 'angular';
-import uiRouter, { StateProvider, UrlRouterProvider, UrlMatcherFactory } from '@uirouter/angularjs';
+import uiRouter, { UIRouter, StateProvider, UrlRouterProvider, UrlMatcherFactory } from '@uirouter/angularjs';
+import { Visualizer } from '@uirouter/visualizer';
 
 // app component
 import { <%= upPrefix %>Component } from './<%= lowPrefix %>.component';
@@ -52,14 +53,27 @@ function bootstrap () {
 }
 
 /**
+ * Enable the Router Visualizer to debug states
+ * Can be enabled by adding an additional run block in the root module
+ * definition above. Like so.....
+ * .run(bootstrap)
+ * .run(stateDebug)
+ * @param {UIRouter} $uiRouter Injected service reference
+ */
+function stateDebug ($uiRouter: UIRouter) {
+  const visualizer = $uiRouter.plugin(Visualizer);
+}
+stateDebug.$inject = ['$uiRouter'];
+
+/**
  * Root abstract route configuration
  * @param {StateProvider}             $stateProvider     Injected service reference
- * @param {angular.ILocationProvider}             $locationProvider  Injected service reference
+ * @param {ng.ILocationProvider}             $locationProvider  Injected service reference
  * @param {UrlRouterProvider}         $urlRouterProvider Injected service reference
  * @param {UrlMatcherFactoryProvider} $urlMatcherFactoryProvider Injected service reference
  */
 function config ($stateProvider: StateProvider,
-                 $locationProvider: angular.ILocationProvider,
+                 $locationProvider: ng.ILocationProvider,
                  $urlRouterProvider: UrlRouterProvider,
                  $urlMatcherFactoryProvider: UrlMatcherFactory) {
   // uses prettier url structure (ie. no hashbang junk)
@@ -73,7 +87,6 @@ function config ($stateProvider: StateProvider,
     .state('root', {
       abstract: true,
       component: '<%= lowPrefix %>',
-      url: '',
       resolve: {
         loadData: ['DataService', (ds: DataService) => {
           return ds.loadData();
