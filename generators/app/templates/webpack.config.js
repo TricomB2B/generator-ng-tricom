@@ -89,6 +89,7 @@ module.exports = () => {
       ]
     },
     plugins: [
+      new webpack.optimize.ModuleConcatenationPlugin(),
       new ExtractTextPlugin({
         filename: 'css/app.[contenthash].css'
       }),

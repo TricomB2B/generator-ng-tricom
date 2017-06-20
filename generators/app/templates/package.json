@@ -53,15 +53,15 @@
     "tslint-loader": "^3.5.2",
     "typescript": "^2.2.2",
     "url-loader": "^0.5.8",
-    "webpack": "^2.3.3",
-    "webpack-dev-server": "^2.4.2"
+    "webpack": "^3.0.0",
+    "webpack-dev-server": "^2.5.0"
   },
   "scripts": {
     "test": "gulp test",
     "build": "npm-run-all clean build:prod",
     "clean": "rimraf ./dist",
     "serve": "webpack-dev-server --progress --colors",
-    "build:prod": "cross-env NODE_ENV=production webpack --progress --colors"
+    "build:prod": "cross-env NODE_ENV=production webpack --progress --colors --display-optimization-bailout"
   },
   "author": "TricomB2B",
   "license": "SEE LICENSE IN LICENSE"
